@@ -1,0 +1,7 @@
+---
+Name: securityextensions
+---
+Security:
+  extensions:
+    - AdminLoginExtension
+---

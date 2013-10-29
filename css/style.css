@@ -1,0 +1,151 @@
+html {
+	height:100%;
+}
+body {
+	background: url("../../framework/admin/images/textures/bg_cms_main_content.png") repeat scroll left top #F0F3F4!important;	
+	height:100%;
+	color:#3D3938;
+	color: #444444;
+    font-family: Arial,sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+a {
+	color: #1556B2;
+}
+
+fieldset, form {
+	border:none;
+	margin:0;
+	padding:0px;
+}
+.form {
+	width:220px;
+	margin:0 auto 5px auto;
+	padding:10px;
+	border:1px solid #899D97;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+	background:#fff;
+}
+
+.form h3{
+	color:#015893;	
+}
+
+.loginlogo{
+	margin:80px auto 10px auto;
+	text-align:center;
+	width:180px;
+	height:33px;
+	background: url("../../framework/admin/images/logo.gif") no-repeat 0px -128px;
+}
+
+#Remember{
+	margin-top:10px;
+}
+.Actions {
+	margin-top:10px;
+}
+
+input.text {
+	 background: linear-gradient(#EAEAEA, #FFFFFF 10%) repeat scroll 0 0 / 100% auto #FFFFFF;
+    border: 1px solid #B3B3B3;
+    border-radius: 4px 4px 4px 4px;
+    line-height: 16px;
+    margin: 0;
+    outline: medium none;
+    padding: 7px;
+    transition: border 0.2s ease-in 0s;
+	width:93%;
+}
+
+.action.action {
+    background-color: #015893;
+    background-image: linear-gradient(to bottom, #0088CC, #015893);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #eee;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	border-radius: 6px 6px 6px 6px;
+    font-size: 14.5px;
+    padding: 6px 19px;
+	width:100%;
+}
+
+.action  {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F5F5F5;
+    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
+    border-image: none;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding: 4px 12px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: rgba(137, 157, 151, 0.6);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 2px rgba(137, 157, 151, 0.6);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 2px rgba(137, 157, 151, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 2px rgba(137, 157, 151, 0.6);
+}
+
+.field label.left {
+    display: block;
+    /*float: left;*/
+    font-weight: bold;
+    line-height: 16px;
+    padding: 8px 8px 8px 0;
+    text-shadow: 1px 1px 0 white;
+    width: 176px;
+}
+
+@media (max-width: 320px) {
+	
+	.loginlogo{
+		margin:20px auto 10px auto;
+	}
+}
+
+@media (max-height: 320px) {
+	.loginlogo{
+		margin:5px auto 0px auto;
+	}
+}
