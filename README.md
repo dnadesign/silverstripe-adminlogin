@@ -3,7 +3,6 @@ silverstripe-adminlogin
 
 Use a custom login screen when log in to the admin section
 
-##Screenshot
 ![Screenshot](https://raw.github.com/axyr/silverstripe-adminlogin/master/images/screenshot.png)
 
 ## Known issues
