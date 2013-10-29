@@ -15,6 +15,9 @@
         "silverstripe/framework": "~3.1"
     },
     "extra": {
-        "installer-name": "adminlogin"
+        "installer-name": "adminlogin",
+		"screenshots": [
+	      "images/screenshot.png"
+	    ]
     }    
 }
