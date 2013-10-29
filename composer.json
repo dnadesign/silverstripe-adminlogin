@@ -1,0 +1,20 @@
+{
+    "name": "axyr/silverstripe-adminlogin",
+    "description": "Use a custom login screen to log in to the admin section",
+    "type": "silverstripe-module",
+    "keywords": ["silverstripe", "login", "module", "cms"],
+        "license": "BSD-3-Clause",
+    "authors": [
+    {
+        "name": "Martijn van Nieuwenhoven",
+        "email": "info@axyrmedia.nl"
+    }
+    ],
+    "require":
+    {
+        "silverstripe/framework": "~3.1"
+    },
+    "extra": {
+        "installer-name": "adminlogin"
+    }    
+}
