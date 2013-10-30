@@ -1,6 +1,7 @@
 <?php
 /**
  * Custom Admin Login form screen
+ * This login screen get also ip based access protection when enabled
  */
  
 class AdminLoginExtension extends Extension {
@@ -38,6 +39,18 @@ class AdminSecurity extends Security {
 	
 	public function init() {
 		parent::init();
+		
+		if(Config::inst()->get('IpAccess', 'enabled')) {
+			$ipAccess = new IpAccess($this->owner->getRequest()->getIP(), Config::inst()->get('IpAccess', 'allowed_ips'));
+			if(!$ipAccess->hasAccess()) {
+				$reponse = '';
+				if(class_exists('ErrorPage', true)) {
+					$response = ErrorPage::response_for(404);
+				}
+				return $this->owner->httpError(404, $response ? $response : 'The requested page could not be found.');
+			}
+		}
+		
 		// this prevents loading frontend css and javscript files
 		Object::useCustomClass('Page_Controller','AdminLoginPage_Controller');
 		Object::useCustomClass('MemberLoginForm','AdminLoginForm');
