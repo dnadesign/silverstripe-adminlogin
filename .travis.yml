@@ -18,4 +18,4 @@ before_script:
  - cd ~/builds/ss
 
 script: 
- - phpunit adminlogin/tests/
+ - phpunit adminlogin/tests
