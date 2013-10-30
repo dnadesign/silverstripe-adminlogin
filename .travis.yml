@@ -17,4 +17,4 @@ before_script:
  - cd ~/builds/ss
 
 script: 
- - phpunit adminlogin/tests/
+ - phpunit axyr/silverstripe-adminlogin/tests/
