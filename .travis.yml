@@ -12,9 +12,10 @@ matrix:
       env: DB=MYSQL CORE_RELEASE=master
 
 before_script:
+ - phpenv rehash
  - git clone git://github.com/silverstripe-labs/silverstripe-travis-support.git ~/travis-support
  - php ~/travis-support/travis_setup.php --source `pwd` --target ~/builds/ss
  - cd ~/builds/ss
 
 script: 
- - phpunit axyr/silverstripe-adminlogin/tests/
+ - phpunit adminlogin/tests/
