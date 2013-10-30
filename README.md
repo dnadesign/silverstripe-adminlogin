@@ -12,6 +12,7 @@ The following formats are supported :
 * 192.168.1.0/24'
 * 192.168.1.*
 
+## Screenshot
 ![Screenshot](https://raw.github.com/axyr/silverstripe-adminlogin/master/images/screenshot.png)
 
 ## Known issues
