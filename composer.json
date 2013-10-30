@@ -19,5 +19,6 @@
 		"screenshots": [
 	      "images/screenshot.png"
 	    ]
-    }    
+    },
+    "replace": {"axyr/silverstripe-adminlogin": "*"}
 }
