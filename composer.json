@@ -20,5 +20,5 @@
 	      "images/screenshot.png"
 	    ]
     },
-    "replace": {"axyr/silverstripe-adminlogin": "*"}
+    "target-dir": "adminlogin"
 }
