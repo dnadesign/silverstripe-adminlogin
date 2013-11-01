@@ -1,6 +1,8 @@
 silverstripe-adminlogin
 =======================
 
+[![Build Status](https://secure.travis-ci.org/axyr/silverstripe-adminlogin.png)](https://travis-ci.org/axyr/silverstripe-adminlogin)
+
 Use a custom login screen when log in to the admin section.
 
 You can also limit the admin/cms section by ip address (ranges).
