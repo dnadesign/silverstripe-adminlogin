@@ -10,11 +10,11 @@ class IpAccessTest extends SapphireTest {
 	);
 	
 	function testHasAccess() {
-		$obj			= new IpAccess('192.168.1.101');
-		$obj->allowedIps	= array();
+		$obj = new IpAccess('192.168.1.101');
+		$obj->allowedIps = array();
 		$this->assertEquals($obj->hasAccess(), 'allowed');
 		
-		$obj->allowedIps	= $this->allowedIps;
+		$obj->allowedIps = $this->allowedIps;
 		
 		$obj->setIp('192.168.1.101');
 		$this->assertEquals($obj->hasAccess(), '192.168.1.101');
@@ -33,8 +33,8 @@ class IpAccessTest extends SapphireTest {
 	}
 	
 	function testMatchExact() {
-		$obj			= new IpAccess('192.168.1.101');
-		$obj->allowedIps	= array('192.168.1.101');
+		$obj = new IpAccess('192.168.1.101');
+		$obj->allowedIps = array('192.168.1.101');
 		$this->assertEquals($obj->matchExact(), '192.168.1.101');
 		
 		$obj->setIp('192.168.1.102');
@@ -42,8 +42,8 @@ class IpAccessTest extends SapphireTest {
 	}
 	
 	function testMatchCIDR() {	
-		$obj			= new IpAccess('192.168.1.101');
-		$obj->allowedIps	= array('192.168.1.0/24');
+		$obj = new IpAccess('192.168.1.101');
+		$obj->allowedIps = array('192.168.1.0/24');
 		$this->assertEquals($obj->matchCIDR(), '192.168.1.0/24');
 		
 		$obj->setIp('192.168.1.257');
@@ -54,8 +54,8 @@ class IpAccessTest extends SapphireTest {
 	}
 	
 	function testMatchRange() {
-		$obj			= new IpAccess('192.168.1.101');
-		$obj->allowedIps	= array('192.168.1.100-200');
+		$obj = new IpAccess('192.168.1.101');
+		$obj->allowedIps = array('192.168.1.100-200');
 		$this->assertEquals($obj->matchRange(), '192.168.1.100-200');
 		
 		$obj->setIp('192.168.1.201');		
@@ -69,8 +69,8 @@ class IpAccessTest extends SapphireTest {
 	}
 	
 	function testMatchWildCard() {
-		$obj			= new IpAccess('192.168.1.101');
-		$obj->allowedIps	= array('192.168.1.*');
+		$obj = new IpAccess('192.168.1.101');
+		$obj->allowedIps = array('192.168.1.*');
 		$this->assertEquals($obj->matchWildCard(), '192.168.1.*');
 		
 		$obj->setIp('192.168.2.101');		
