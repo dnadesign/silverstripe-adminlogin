@@ -77,6 +77,19 @@ class IpAccessTest extends SapphireTest {
 		$this->assertEmpty($obj->matchWildCard());
 		
 		$obj->setIp('190.168.1.101');		
-		$this->assertEmpty($obj->matchWildCard());		
+		$this->assertEmpty($obj->matchWildCard());	
+
+		$obj = new IpAccess('192.168.2.2');
+		$obj->allowedIps = array('192.168.*');
+		$this->assertEquals($obj->matchWildCard(), '192.168.*');	
+
+		$obj->allowedIps = array('192.167.*');
+		$this->assertNull($obj->matchWildCard());
+
+		$obj->allowedIps = array('192.*');
+		$this->assertEquals($obj->matchWildCard(), '192.*');	
+
+		$obj->allowedIps = array('10.*');
+		$this->assertNull($obj->matchWildCard());
 	}
 }
