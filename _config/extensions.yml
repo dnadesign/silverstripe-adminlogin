@@ -1,9 +1,6 @@
 ---
 Name: securityextensions
 ---
-Security:
-  extensions:
-    - AdminLoginExtension
 LeftAndMain:
   extensions:
     - LimitAdminAccessExtension
