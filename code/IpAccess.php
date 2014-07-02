@@ -15,7 +15,7 @@ class IpAccess {
 	
 	public $allowedIps	= array();
 	
-	private $ip			= '';
+	private $ip	= '';
 	
 	public function __construct($ip = '', $allowedIps = array()) {
 		$this->ip			= $ip;

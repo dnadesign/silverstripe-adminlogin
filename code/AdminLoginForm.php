@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @package adminlogin
+ */
 class AdminLoginForm extends MemberLoginForm {
 	
 	public function __construct($controller, $name, $fields = null, $actions = null,
@@ -28,14 +31,12 @@ JS
 	}
 	
 	/**
-	 *
+	 * @param array $data
 	 */
 	public function forgotPassword($data) {
-		$SQL_data = Convert::raw2sql($data);
-		$SQL_email = $SQL_data['Email'];
-		$member = DataObject::get_one('Member', "\"Email\" = '{$SQL_email}'");
-		
+		$member = Member::get()->filter('Email', $data['Email'])->first();
 		$backUrlString = '';
+
 		if(isset($data['BackURL']) && $backURL = $data['BackURL']) {
 			$backUrlString = '?BackURL=' . $backURL;
 		}

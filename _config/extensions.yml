@@ -3,5 +3,8 @@ Name: securityextensions
 ---
 LeftAndMain:
   extensions:
-    - LimitAdminAccessExtension
+    - LimitControllerAccessExtension
+Security:
+  extensions:
+    - AdminLoginExtension
 ---

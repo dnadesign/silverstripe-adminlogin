@@ -1,8 +1,14 @@
 <?php
 
-class LimitAdminAccessExtension extends Extension {
+/**
+ * @package adminlogin
+ */
+class LimitControllerAccessExtension extends Extension {
 	
-	function onBeforeInit() {
+	/**
+	 * @return void
+	 */
+	public function onBeforeInit() {
 		if(Config::inst()->get('IpAccess', 'enabled')) {
 			$ipAccess = new IpAccess($this->owner->getRequest()->getIP(), Config::inst()->get('IpAccess', 'allowed_ips'));
 				
@@ -12,8 +18,7 @@ class LimitAdminAccessExtension extends Extension {
 				}
 
 				$response = ($response) ? $response : 'The requested page could not be found.';
-
-				return $this->owner->httpError(403, $response);
+				$this->owner->httpError(403, $response);
 			}
 		}
 	}

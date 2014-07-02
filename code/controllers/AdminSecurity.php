@@ -1,31 +1,13 @@
 <?php
-/**
- * Custom Admin Login form screen
- * This login screen get also ip based access protection when enabled
- */
- 
-class AdminLoginExtension extends Extension {
-	
-	// redirect to AdminSecurity, when we are coming from /admin/*
-	function onBeforeSecurityLogin() {
-		if(isset($_GET['BackURL']) && strstr($_GET['BackURL'], '/admin/')) {
-			if(Controller::curr()->class != 'AdminSecurity') {
-				$link = 'AdminSecurity/login' . '?BackURL=' . urlencode($_GET['BackURL']);
-				return $this->owner->redirect($link);
-			}
-		}
-	}
-}
 
 /**
- * Dummy Controller to prevent loading frontend css and javscript files
+ * @package adminlogin
  */
-class AdminLoginPage_Controller extends ContentController {
-	
-}
-
 class AdminSecurity extends Security {
 	
+	/**
+	 * @var array
+	 */
 	private static $allowed_actions = array( 
 		'passwordsent'
 	);
@@ -38,56 +20,69 @@ class AdminSecurity extends Security {
 	private static $template_main = 'AdminLogin';
 	
 	public function init() {
-		parent::init();
-		
-		if(Config::inst()->get('IpAccess', 'enabled')) {
-			$ipAccess = new IpAccess($this->owner->getRequest()->getIP(), Config::inst()->get('IpAccess', 'allowed_ips'));
-			if(!$ipAccess->hasAccess()) {
-				$reponse = '';
-				if(class_exists('ErrorPage', true)) {
-					$response = ErrorPage::response_for(404);
-				}
-				return $this->owner->httpError(404, $response ? $response : 'The requested page could not be found.');
-			}
+		// if the extension has been disabled then redirect back to the Security
+		$security = singleton('Security');
+
+		if(!$security->has_extension('AdminLoginExtension')) {
+			return $this->redirect(Controller::join_links(
+				$security->Link($this->request->param('Action')),
+				(isset($_SERVER['QUERY_STRING'])) ? '?' . $_SERVER['QUERY_STRING'] : ''
+			));
 		}
+
+		parent::init();
+
 		
 		// this prevents loading frontend css and javscript files
-		Object::useCustomClass('Page_Controller','AdminLoginPage_Controller');
+		Object::useCustomClass('Page_Controller','AdminLoginPageController');
 		Object::useCustomClass('MemberLoginForm','AdminLoginForm');
+
 		Requirements::css('adminlogin/css/style.css');
 	}
 	
+	/**
+	 * @param string $action
+	 *
+	 * @return string
+	 */
 	public function Link($action = null) {
 		return "AdminSecurity/$action";
 	}
 	
+	/**
+	 * @return boolean
+	 */
 	public static function isAdminLogin() {
 		return strstr(self::getBackUrl(), '/admin/');
 	}
 	
+	/**
+	 * @return string
+	 */
 	public static function getBackUrl() {
 		if(isset($_REQUEST['BackURL'])) {
 			return $_REQUEST['BackURL'];
-		}elseif(isset($_SESSION['BackURL'])) {
+		} elseif(isset($_SESSION['BackURL'])) {
 			return $_SESSION['BackURL'];
 		}
 	}
 	
-	public function passwordsent($request) {
-		return parent::passwordsent($request);
-	}
-	
 	/**
 	 * @see Security::getPasswordResetLink()
+	 *
 	 * We overload this, so we can add the BackURL to the password resetlink
 	 */
 	public static function getPasswordResetLink($member, $autologinToken) {
 		$autologinToken = urldecode($autologinToken);		
 		$selfControllerClass = __CLASS__;
 		$selfController = new $selfControllerClass();
+		
 		return $selfController->Link('changepassword') . "?m={$member->ID}&t=$autologinToken";
 	}
 	
+	/**
+	 * @return ChangePasswordForm
+	 */
 	public function ChangePasswordForm() {
 		return new ChangePasswordForm($this, 'ChangePasswordForm');
 	}
