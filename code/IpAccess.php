@@ -66,15 +66,28 @@ class IpAccess {
 	}
 	
 	/**
-	 * try to match cidr range 
+	 * try to match cidr range
 	 * Example : 192.168.1.0/24
 	 */
 	public function matchCIDR() {
 		if($ranges = array_filter($this->allowedIps, function($ip) { return strstr($ip, '/'); })) {
 			foreach($ranges as $cidr) {
-				list ($net, $mask) = explode ('/', $cidr);
-				if(( ip2long ($this->ip) & ~((1 << (32 - $mask)) - 1) ) == ip2long ($net)) {
-					return $cidr;
+				// copied from https://github.com/symfony/http-foundation/blob/master/IpUtils.php
+				if (false !== strpos($cidr, '/')) {
+					list($address, $netmask) = explode('/', $cidr, 2);
+					if ($netmask === '0') {
+						// Ensure IP is valid - using ip2long below implicitly validates, but we need to do it manually here
+						return filter_var($address, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4);
+					}
+					if ($netmask < 0 || $netmask > 32) {
+						return false;
+					}
+				} else {
+					$address = $cidr;
+					$netmask = 32;
+				}
+				if (0 === substr_compare(sprintf('%032b', ip2long($this->ip)), sprintf('%032b', ip2long($address)), 0, $netmask)) {
+					return true;
 				}
 			}
 		}
